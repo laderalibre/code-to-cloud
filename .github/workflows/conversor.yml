@@ -1,0 +1,39 @@
+name: Ejecutar Conversor de Monedas
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 12 * * *"  # Se ejecuta diariamente a las 12:00 UTC
+
+jobs:
+  execute_script:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  
+
+    steps:
+      - name: 📥 Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: 🔧 Instalar dependencias
+        run: |
+          sudo apt update
+          curl -sSL install.duckdb.org | sh && \
+          mv ~/.duckdb/cli/latest/duckdb /usr/local/bin/duckdb
+
+      - name: 🚀 Ejecutar el script
+        run: |
+          chmod +x scripts/indicadores.sh
+          ./scripts/indicadores.sh
+
+      - name: 📤 Subir archivos generados al repositorio
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add indicadores_economicos/*.json files_parquet/*.parquet
+          git commit -m "🔄 Actualización de archivos JSON y Parquet"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
