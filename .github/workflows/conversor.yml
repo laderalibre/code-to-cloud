@@ -28,11 +28,23 @@ jobs:
           chmod +x scripts/indicadores.sh
           ./scripts/indicadores.sh
 
+      - name: 🛠 Forzar cambios en archivos (para evitar problemas de caché)
+        run: |
+          echo "$(date)" > indicadores_economicos/force_update.txt
+
       - name: 📤 Subir archivos generados al repositorio
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add indicadores_economicos/*.json files_parquet/*.parquet
+
+          git add indicadores_economicos/*.json files_parquet/*.parquet indicadores_economicos/force_update.txt
+
+          # Verificar si hay cambios antes de hacer commit
+          if git diff --cached --quiet; then
+            echo "⚠️ No hay cambios para subir. Saltando commit."
+            exit 0
+          fi
+
           git commit -m "🔄 Actualización de archivos JSON y Parquet"
           git push
         env:
