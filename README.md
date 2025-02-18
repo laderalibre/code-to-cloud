@@ -1,20 +1,52 @@
-# Code to Cloud 🚀
-Automatización de indicadores económicos con GitHub Actions y DuckDB
+# 🚀 **Code to Cloud** | Automatización de Indicadores Económicos 🌎📊  
 
-Este repositorio contiene un script en Bash que obtiene datos de indicadores económicos desde la API de mindicador.cl, los guarda en formato JSON y los convierte a Parquet usando DuckDB. Todo el proceso está automatizado con GitHub Actions, ejecutándose automáticamente cada día.
+Flujo automatizado para obtener y procesar **indicadores económicos** de forma eficiente, utilizando **GitHub Actions** y **DuckDB**.  
 
-📌 ¿Qué hace este proyecto?
-✅ Obtiene datos de indicadores económicos (UF, Dólar) de mindicador.cl.
-✅ Guarda los datos en JSON en la carpeta indicadores_economicos/.
-✅ Convierte los datos a Parquet en files_parquet/ usando DuckDB.
-✅ GitHub Actions ejecuta el script automáticamente y sube los archivos actualizados al repositorio.
-Este repositorio contiene un script en Bash que obtiene datos de indicadores económicos desde la API de mindicador.cl, los guarda en formato JSON y los convierte a Parquet usando DuckDB. Todo el proceso está automatizado con GitHub Actions, ejecutándose automáticamente cada día.
+Este pipeline descarga datos de [mindicador.cl](https://mindicador.cl/), los almacena en **JSON**, los transforma en **Parquet** y sube automáticamente los archivos actualizados al repositorio. Todo sin intervención manual. ⚡  
 
-🚀 Automatización con GitHub Actions
-Cada vez que se hace un push a main o a las 12:00 UTC, GitHub Actions ejecuta el flujo de trabajo que:
+---
 
-Clona el repositorio.
-Instala las dependencias necesarias (DuckDB y curl).
-Ejecuta el script scripts/indicadores.sh para obtener los datos.
-Convierte los archivos JSON a Parquet con DuckDB.
-Sube automáticamente los archivos actualizados al repositorio.
+## 🔧 **Tecnologías utilizadas:**  
+🔹 **GitHub Actions** → Automatización del proceso 📡  
+🔹 **DuckDB** → Conversión y manipulación de datos 🦆  
+🔹 **Bash & Curl** → Extracción de datos desde API REST 🖥️  
+🔹 **JSON & Parquet** → Formatos de almacenamiento estructurado 📂  
+
+---
+
+## 🔄 **Flujo de Automatización:**  
+✅ **Extracción de datos** desde la API de [mindicador.cl](https://mindicador.cl/) 🌍  
+✅ **Almacenamiento en JSON** en `indicadores_economicos/` 📝  
+✅ **Conversión a Parquet** con DuckDB en `files_parquet/` 📦  
+✅ **Automatización con GitHub Actions** → Descarga y transformación diaria ⚙️  
+✅ **Commit & push automático** de los archivos actualizados al repositorio 🔄  
+
+---
+
+## 📌 **Estado actual:**  
+✔️ **El flujo ya está en producción** y ejecuta diariamente la actualización de datos.  
+📆 **Frecuencia de ejecución:** Todos los días a las **12:00 UTC** vía **GitHub Actions**.  
+
+---
+
+## 🛠️ **¿Cómo usarlo manualmente?**  
+Si quieres ejecutarlo localmente, sigue estos pasos:  
+
+1️⃣ **Clona el repositorio**  
+```bash
+git clone https://github.com/tu-usuario/code-to-cloud.git
+cd code-to-cloud
+```
+2️⃣ **Instala DuckDB**  
+```bash
+curl -sSL install.duckdb.org | sh && \
+mv ~/.duckdb/cli/latest/duckdb /usr/local/bin/duckdb
+```
+3️⃣ **Ejecuta el script**
+```bash
+chmod +x scripts/indicadores.sh
+./scripts/indicadores.sh
+```
+4️⃣ **Revisar los archivos generados**  
+📁 JSON → `indicadores_economicos/`  
+📁 Parquet → `files_parquet/`  
