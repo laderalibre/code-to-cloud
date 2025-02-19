@@ -1,9 +1,11 @@
 name: Ejecutar Conversor de Monedas
 
 on:
+  push:
+    branches:
+      - main
   schedule:
-    # * is a special character in YAML so you have to quote this string
-    - cron:  '10 * * * *'
+    - cron:  '30 5,17 * * *'  # Se ejecuta diariamente a las 12:00 UTC
 
 jobs:
   execute_script:
