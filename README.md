@@ -25,7 +25,7 @@ Este pipeline descarga datos de [mindicador.cl](https://mindicador.cl/), los alm
 
 ## 📌 **Estado actual:**  
 ✔️ **El flujo ya está en producción** y ejecuta diariamente la actualización de datos.  
-📆 **Frecuencia de ejecución:** Todos los días a las **12:00 UTC** vía **GitHub Actions**.  
+📆 **Frecuencia de ejecución:** Todos los días entre las **12:00 - 14:00 UTC** vía **GitHub Actions**.  
 
 ---
 
