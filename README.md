@@ -3,7 +3,6 @@
 Flujo automatizado para obtener y procesar **indicadores económicos** de forma eficiente, utilizando **GitHub Actions** y **DuckDB**.  
 
 Este pipeline descarga datos de [mindicador.cl](https://mindicador.cl/), los almacena en **JSON**, los transforma en **Parquet** y sube automáticamente los archivos actualizados al repositorio. Todo sin intervención manual. ⚡  
-
 ---
 
 ## 🔧 **Tecnologías utilizadas:**  
